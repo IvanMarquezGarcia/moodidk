@@ -1,4 +1,4 @@
-package eloy;
+package eloy.model;
 
 import java.time.LocalDate;
 
