@@ -1,4 +1,4 @@
-package eloy;
+package com.ivan.eloy.eloysimulator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import eloy.model.Eloy;
+import com.ivan.eloy.eloysimulator.core.model.Eloy;
 
 public class Main {
 
@@ -25,10 +25,10 @@ public class Main {
 			optionCode = requestOption();
 			
 			switch(optionCode) {
-				case 1: eloy.saludar();
+				case 1: eloy.sayHi();
 					break;
 				
-				case 2: eloy.hablar();
+				case 2: eloy.talk();
 					break;
 				
 				case 3: System.out.println(eloy.getAge());
@@ -39,6 +39,16 @@ public class Main {
 					
 				default: goAhead = false;
 			}
+			
+			try {
+				Thread.sleep(1000);
+			} catch(InterruptedException ie) {
+				System.out.println(	"#########################################################\n" +
+						"# The main thread was interrupted\n" +
+						"#########################################################");
+			}
+			
+			System.out.println("\n\n\n");
 		}
 		
 		System.out.println("Nos vemos pronto.");

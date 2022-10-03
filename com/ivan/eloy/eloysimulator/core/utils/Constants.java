@@ -1,4 +1,4 @@
-package eloy.model.utils;
+package com.ivan.eloy.eloysimulator.core.utils;
 
 public class Constants {
 

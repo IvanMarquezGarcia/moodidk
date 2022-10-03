@@ -1,8 +1,8 @@
-package eloy.mood;
+package com.ivan.eloy.eloysimulator.mood;
 
 
-import eloy.model.Eloy;
-import eloy.model.utils.Constants;
+import com.ivan.eloy.eloysimulator.core.model.Eloy;
+import com.ivan.eloy.eloysimulator.core.utils.Constants;
 
 public class MoodModifierImpl implements MoodModifier {
 	
