@@ -40,8 +40,8 @@ public class Eloy extends Human implements MariCarmen, Padre {
 		
 		switch(frase) {
 			case 0:
-				System.out.println("Soy Eloy, tengo " + getAge() + " años, estoy mazado y " +
-						"quiero aprenderlo todo.\nProgramación genérica ¡¿QUÉ?! Que te calle ya...");
+				System.out.println("Soy Eloy, tengo " + getAge() + " años, estoy mazado y quiero " +
+						"aprenderlo todo.\nProgramación genérica ¡¿QUÉ?! Que te calle ya...");
 				break;
 			
 			case 1:

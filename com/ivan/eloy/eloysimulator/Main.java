@@ -11,7 +11,7 @@ import com.ivan.eloy.eloysimulator.core.model.Eloy;
 
 public class Main {
 
-	private static Map<Byte, String> options = new HashMap<>();
+	private static Map<Byte, String> menuOptions = new HashMap<>();
 	
 	public static void main(String[] args) {
 		init();
@@ -40,13 +40,8 @@ public class Main {
 				default: goAhead = false;
 			}
 			
-			try {
-				Thread.sleep(1000);
-			} catch(InterruptedException ie) {
-				System.out.println(	"#########################################################\n" +
-						"# The main thread was interrupted\n" +
-						"#########################################################");
-			}
+			System.out.println("\nany key to show the menu...");
+			new Scanner(System.in).next();
 			
 			System.out.println("\n\n\n");
 		}
@@ -55,20 +50,20 @@ public class Main {
 	}
 	
 	private static void init() {
-		options.put((byte) 1, "saludar");
-		options.put((byte) 2, "hablar");
-		options.put((byte) 3, "informar de edad");
-		options.put((byte) 4, "informar de estado");
+		menuOptions.put((byte) 1, "saludar");
+		menuOptions.put((byte) 2, "hablar");
+		menuOptions.put((byte) 3, "informar de edad");
+		menuOptions.put((byte) 4, "informar de estado");
 	}
 	
 	private static byte requestOption() {
 		System.out.println(	"#################################################################");
 		
-		List<Byte> codes = new ArrayList<>(options.keySet());
+		List<Byte> codes = new ArrayList<>(menuOptions.keySet());
 		Collections.sort(codes);
 		
 		for (Byte code : codes) {
-			System.out.println(	"##	" + code + ". " + options.get(code) + "");
+			System.out.println(	"##	" + code + ". " + menuOptions.get(code) + "");
 		}
 		
 		System.out.println(	"##	x. cualquier otra tecla para salir\n" +
@@ -78,7 +73,9 @@ public class Main {
 		@SuppressWarnings("resource")
 		String option = new Scanner(System.in).next();
 		
-		option = option.charAt(0) + "";
+		while(!Character.isDigit(option.charAt(0))) {
+			option = option.charAt(0) + "";
+		}
 		
 		return Byte.valueOf(option);
 	}

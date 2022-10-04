@@ -2,6 +2,8 @@ package com.ivan.eloy.eloysimulator.core.model;
 
 import java.time.LocalDate;
 
+import com.ivan.eloy.eloysimulator.tasks.Task;
+
 public abstract class Human {
 
 	protected double experience; 		
@@ -89,6 +91,14 @@ public abstract class Human {
 		age = (byte)java.time.temporal.ChronoUnit.YEARS.between(bornDate , LocalDate.now());
 
 		return age;
+	}
+	
+	// ######################################################################
+	// # PUBLIC METHODS
+	// ######################################################################
+	
+	public void workOn(Task task) {
+		// TODO
 	}
 
 	// ######################################################################

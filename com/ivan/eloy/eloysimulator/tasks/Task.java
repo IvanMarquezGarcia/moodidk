@@ -1,14 +1,21 @@
 package com.ivan.eloy.eloysimulator.tasks;
 
+import java.time.LocalDateTime;
+
+import com.ivan.eloy.eloysimulator.core.utils.Date;
+
 public class Task {
 
 	private String name;
 	private Dificulty dificulty;
-	private String limitDate;
-	private double workload; // simulated with a thread counting up to the value in 0.1 steps of 0.1
+	private long initDate;
+	private long limitDate;
+	private long workload; // simulated with a thread counting up to the value in 0.1 steps of 0.1
 	private boolean done;
 	
-	public Task() {}
+	public Task() {
+		initDate = Date.LocalDateTimeMillis(LocalDateTime.now());
+	}
 
 	public String getName() {
 		return name;
@@ -26,19 +33,23 @@ public class Task {
 		this.dificulty = dificulty;
 	}
 
-	public String getLimitDate() {
+	public long getInitDate() {
+		return initDate;
+	}
+
+	public long getLimitDate() {
 		return limitDate;
 	}
 
-	public void setLimitDate(String limitDate) {
+	public void setLimitDate(long limitDate) {
 		this.limitDate = limitDate;
 	}
 
-	public double getWorkload() {
+	public long getWorkload() {
 		return workload;
 	}
 
-	public void setWorkload(double workload) {
+	public void setWorkload(long workload) {
 		this.workload = workload;
 	}
 
@@ -49,6 +60,23 @@ public class Task {
 	public void setDone(boolean done) {
 		this.done = done;
 	}
+	
+	// ######################################################################
+	// # PUBLIC METHODS
+	// ######################################################################
+	
+	public double getIntensity() {
+		long availableTime = limitDate - initDate;
+		return workload / availableTime;
+	}
+	
+	public double getExperienceOnCompletion() {
+		return getIntensity() * dificulty.ordinal();
+	}
+	
+	// ######################################################################
+	// # INHERETED METHODS IMPLEMENTED
+	// ######################################################################
 
 	@Override
 	public String toString() {
