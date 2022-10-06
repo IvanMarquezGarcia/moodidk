@@ -3,25 +3,21 @@ package com.ivan.eloy.eloysimulator.tasks;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: implement and use
+
 public class TaskList {
 
 	private final List<Task> taskList;
 	
 	public TaskList() {
-		taskList = new ArrayList<>(0);
+		taskList = new ArrayList<>();
 	}
 	
 	public synchronized boolean addTask(Task task) {
-		return taskList.add(task);
+		return false;
 	}
 	
 	public boolean setTaskAsDone(int index) {
-		Task task = taskList.get(index);
-		
-		// TODO: check if task is really finished
-		if (task != null) {
-			task.setDone(true);
-		}
 		
 		return false;
 	}

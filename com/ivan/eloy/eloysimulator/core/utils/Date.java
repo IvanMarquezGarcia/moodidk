@@ -5,7 +5,7 @@ import java.time.ZoneId;
 
 public class Date {
 
-	public static long LocalDateTimeMillis(LocalDateTime ldt) {
+	public static long LocalDateTimeToMillis(LocalDateTime ldt) {
 		return ldt.atZone(ZoneId.systemDefault())
 		.toInstant()
 		.toEpochMilli();

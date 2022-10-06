@@ -11,10 +11,11 @@ public class Task {
 	private long initDate;
 	private long limitDate;
 	private long workload; // simulated with a thread counting up to the value in 0.1 steps of 0.1
+	private double completedWork;
 	private boolean done;
 	
 	public Task() {
-		initDate = Date.LocalDateTimeMillis(LocalDateTime.now());
+		initDate = Date.LocalDateTimeToMillis(LocalDateTime.now());
 	}
 
 	public String getName() {
@@ -52,11 +53,19 @@ public class Task {
 	public void setWorkload(long workload) {
 		this.workload = workload;
 	}
-
-	public boolean isDone() {
-		return done;
+	
+	public double getCompletedWork() {
+		return completedWork;
 	}
 
+	public void setCompletedWork(double completedWork) {
+		this.completedWork = completedWork;
+	}
+	
+	public boolean getDone() {
+		return done;
+	}
+	
 	public void setDone(boolean done) {
 		this.done = done;
 	}
@@ -66,12 +75,24 @@ public class Task {
 	// ######################################################################
 	
 	public double getIntensity() {
+		// TODO: refactor
 		long availableTime = limitDate - initDate;
-		return workload / availableTime;
+		double r = (double) workload / availableTime;
+		return r;
+	}
+	
+	public double getRelativeIntensity() {
+		// TODO: test
+		long availableTime = limitDate - Date.LocalDateTimeToMillis(LocalDateTime.now());
+		double r = (double) (workload - completedWork) / availableTime;
+		return r;
 	}
 	
 	public double getExperienceOnCompletion() {
-		return getIntensity() * dificulty.ordinal();
+		// TODO: refactor
+		double intensity = getIntensity();
+		int difi = dificulty.ordinal() + 1;
+		return intensity * difi;
 	}
 	
 	// ######################################################################
@@ -81,12 +102,14 @@ public class Task {
 	@Override
 	public String toString() {
 		return "Task [\n" +
-					"\thashcode = " + hashCode() +
-					"\tname = " + name + ",\n" +
-					"\tdificulty = " + dificulty + ",\n" +
-					"\tlimitDate = " + limitDate + ",\n" +
-					"\tworkload = " + workload + ",\n" +
-					"\tdone=" + done +
+					"\thashcode = "  	   + hashCode() 	+ ",\n" +
+					"\tname = " 	 	   + name 			+ ",\n" +
+					"\tdificulty = " 	   + dificulty 		+ ",\n" +
+					"\tinitDate = "  	   + initDate 		+ ",\n" +
+					"\tlimitDate = " 	   + limitDate 		+ ",\n" +
+					"\tworkload = "  	   + workload 		+ ",\n" +
+					"\tcompleted work = "  + completedWork 	+ "\n" +
+					"\tdone = "  		   + done 			+ "\n" +
 				"]";
 	}
 	
