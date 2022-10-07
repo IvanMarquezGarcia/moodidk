@@ -1,5 +1,7 @@
 package com.ivan.eloy.eloysimulator.tasks.management;
 
+import java.util.Map;
+
 import com.ivan.eloy.eloysimulator.tasks.Dificulty;
 import com.ivan.eloy.eloysimulator.tasks.Task;
 
@@ -11,7 +13,7 @@ public interface TaskModifier {
 
 	void setWorkload(long workload, Task task) throws Exception;
 	
-	double submit(Task task) throws Exception;
+	Map<String, Double> submit(Task task) throws Exception;
 	
 	void modifyCompletedWork(double modification, Task task);
 	

@@ -1,6 +1,8 @@
 package com.ivan.eloy.eloysimulator.core.model;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Map;
 
 import com.ivan.eloy.eloysimulator.tasks.Task;
 import com.ivan.eloy.eloysimulator.tasks.management.TaskModifier;
@@ -12,7 +14,6 @@ public abstract class Human {
 	protected double frustration;
 	protected double satisfaction;
 	protected double motivation;
-	protected double workAgility;
 	protected boolean focus;		// should be activated explicitly
 	protected boolean evilMode;   	// is activated when frustration exceeds value 8
 	protected boolean alive;
@@ -63,14 +64,6 @@ public abstract class Human {
 	public void setMotivation(double motivation) {
 		this.motivation = motivation;
 	}
-	
-	public double getWorkAgility() {
-		return workAgility;
-	}
-
-	public void setWorkAgility(double workAgility) {
-		this.workAgility = workAgility;
-	}
 
 	public boolean isFocus() {
 		return focus;
@@ -107,15 +100,20 @@ public abstract class Human {
 	public TaskModifier getTaskModifier() {
 		return taskModifier;
 	}
+	
+	public double getWorkAgility() {
+		double auxExperience = experience;
+		
+		if (focus == false) {
+			auxExperience *= 0.7;
+		}
+		
+		return (double) auxExperience - (auxExperience * (stress / 10));
+	}
 
 	public byte getAge() {
-		byte age = 0;
-
-		LocalDate bornDate = LocalDate.of(2000, 10, 7);
-
-		age = (byte)java.time.temporal.ChronoUnit.YEARS.between(bornDate , LocalDate.now());
-
-		return age;
+		return (byte) ChronoUnit.YEARS
+						.between(LocalDate.of(2000, 10, 7), LocalDate.now());
 	}
 	
 	// ######################################################################
@@ -126,12 +124,18 @@ public abstract class Human {
 		if (!working) {
 			working = true;
 			Thread thread = new Thread(() -> {
+				long initTime = System.currentTimeMillis(); // DEBUG
+				
 				while(task.getCompletedWork() < task.getWorkload()) {
 					taskModifier.modifyCompletedWork(0.1, task);
 					try {
+						// DEBUG SNIPPET
 						System.out.println(	" #!#!#!# task log -- workload " + task.getWorkload() + 
 								" workCompleted " + task.getCompletedWork());
-						Thread.sleep(Math.round(Byte.MAX_VALUE - workAgility));
+						
+						// DEBUG SNIPPET END
+						
+						Thread.sleep(Math.round(Byte.MAX_VALUE - getWorkAgility()));
 					} catch(InterruptedException ie) {
 						System.out.println("Se interrumpió la ejecucíon de la tarea " +
 											task.getName());
@@ -139,9 +143,12 @@ public abstract class Human {
 					}
 				}
 				
+				long endTime = System.currentTimeMillis(); // DEBUG
+				System.out.println("task done in " + (endTime - initTime) + " milliseconds"); // DEBUG
+				
 				task.setCompletedWork(task.getWorkload());
 				try {
-					experience += taskModifier.submit(task);
+					processCompensation(taskModifier.submit(task));
 				} catch(Exception ex) {
 					System.out.println("¡¡¡ " + ex.getMessage());
 				}
@@ -154,6 +161,10 @@ public abstract class Human {
 		} else {
 			System.out.println("No puedo, estoy trabajando en " + task.getName());
 		}
+	}
+	
+	private void processCompensation(Map<String, Double> compensationPack) {
+		experience += compensationPack.get("experience");
 	}
 
 	// ######################################################################
@@ -170,18 +181,18 @@ public abstract class Human {
 	
 	@Override
 	public String toString() {
-		return  getClass().getSimpleName() 				+ "[\n" +
-					"\thashcode = " 	+ hashCode() 	+ ",\n" +
-					"\texperience = " 	+ experience 	+ ",\n" +
-					"\tstress = " 		+ stress 		+ ",\n" +
-					"\tfrustration = " 	+ frustration 	+ ",\n" +
-					"\tsatisfaction = " + satisfaction 	+ ",\n" +
-					"\tmotivation = " 	+ motivation 	+ ",\n" +
-					"\twork agility = "	+ workAgility 	+ ",\n" +
-					"\tfocus = " 		+ focus 		+ ",\n" +
-					"\tevilMode = " 	+ evilMode 		+ ",\n" +
-					"\tworking = " 		+ working		+ ",\n" +
-					"\talive = " 		+ alive 		+ "\n" +
+		return  getClass().getSimpleName() 					+ "[\n" +
+					"\thashcode = " 	+ hashCode() 		+ ",\n" +
+					"\texperience = " 	+ experience 		+ ",\n" +
+					"\tstress = " 		+ stress 			+ ",\n" +
+					"\tfrustration = " 	+ frustration 		+ ",\n" +
+					"\tsatisfaction = " + satisfaction 		+ ",\n" +
+					"\tmotivation = " 	+ motivation 		+ ",\n" +
+					"\twork agility = "	+ getWorkAgility() 	+ ",\n" +
+					"\tfocus = " 		+ focus 			+ ",\n" +
+					"\tevilMode = " 	+ evilMode 			+ ",\n" +
+					"\tworking = " 		+ working			+ ",\n" +
+					"\talive = " 		+ alive 			+ "\n" +
 				"]";
 	}
 

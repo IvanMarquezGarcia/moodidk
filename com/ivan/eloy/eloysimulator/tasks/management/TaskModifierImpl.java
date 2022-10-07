@@ -1,5 +1,8 @@
 package com.ivan.eloy.eloysimulator.tasks.management;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.ivan.eloy.eloysimulator.tasks.Dificulty;
 import com.ivan.eloy.eloysimulator.tasks.Task;
 
@@ -52,7 +55,7 @@ public class TaskModifierImpl implements TaskModifier {
 	}
 
 	@Override
-	public double submit(Task task) throws Exception {
+	public Map<String, Double> submit(Task task) throws Exception {
 		if (task.getDone()) {
 			throw new IllegalStateException("tarea ya realizada");
 		}
@@ -61,7 +64,11 @@ public class TaskModifierImpl implements TaskModifier {
 			throw new IllegalStateException("tarea sin completar");
 		}
 		
-		return task.getExperienceOnCompletion();
+		Map<String, Double> compensationPack = new HashMap<>();
+		
+		compensationPack.put("experience", task.getExperienceOnCompletion());
+		
+		return compensationPack;
 	}
 
 	
