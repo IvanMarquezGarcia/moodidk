@@ -1,13 +1,13 @@
-package com.ivan.eloy.eloysimulator.core.model;
+package com.ivan.moodidk.core.model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.ivan.eloy.eloysimulator.core.utils.Constants;
-import com.ivan.eloy.eloysimulator.mood.MoodModifierImpl;
-import com.ivan.eloy.eloysimulator.mood.RunnableMoodManager;
-import com.ivan.eloy.eloysimulator.tasks.management.TaskModifierImpl;
+import com.ivan.moodidk.core.utils.Constants;
+import com.ivan.moodidk.mood.MoodModifierImpl;
+import com.ivan.moodidk.mood.RunnableMoodManager;
+import com.ivan.moodidk.tasks.management.TaskModifierImpl;
 
 // Clase para instanciar un nuevo Eloy:
 

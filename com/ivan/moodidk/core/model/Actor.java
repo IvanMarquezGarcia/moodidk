@@ -1,11 +1,11 @@
-package com.ivan.eloy.eloysimulator.core.model;
+package com.ivan.moodidk.core.model;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
 
-import com.ivan.eloy.eloysimulator.tasks.Task;
-import com.ivan.eloy.eloysimulator.tasks.management.TaskModifier;
+import com.ivan.moodidk.tasks.Task;
+import com.ivan.moodidk.tasks.management.TaskModifier;
 
 public abstract class Actor {
 

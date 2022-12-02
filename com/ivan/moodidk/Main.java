@@ -1,4 +1,4 @@
-package com.ivan.eloy.eloysimulator;
+package com.ivan.moodidk;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.ivan.eloy.eloysimulator.core.model.ActorImpl;
-import com.ivan.eloy.eloysimulator.core.utils.Date;
-import com.ivan.eloy.eloysimulator.tasks.Dificulty;
-import com.ivan.eloy.eloysimulator.tasks.Task;
+import com.ivan.moodidk.core.model.ActorImpl;
+import com.ivan.moodidk.core.utils.Date;
+import com.ivan.moodidk.tasks.Dificulty;
+import com.ivan.moodidk.tasks.Task;
 
 public class Main {
 

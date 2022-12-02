@@ -1,8 +1,8 @@
-package com.ivan.eloy.eloysimulator.tasks;
+package com.ivan.moodidk.tasks;
 
 import java.time.LocalDateTime;
 
-import com.ivan.eloy.eloysimulator.core.utils.Date;
+import com.ivan.moodidk.core.utils.Date;
 
 public class Task {
 

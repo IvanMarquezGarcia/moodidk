@@ -1,10 +1,10 @@
-package com.ivan.eloy.eloysimulator.tasks.management;
+package com.ivan.moodidk.tasks.management;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.ivan.eloy.eloysimulator.tasks.Dificulty;
-import com.ivan.eloy.eloysimulator.tasks.Task;
+import com.ivan.moodidk.tasks.Dificulty;
+import com.ivan.moodidk.tasks.Task;
 
 public class TaskModifierImpl implements TaskModifier {
 

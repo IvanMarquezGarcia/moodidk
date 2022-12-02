@@ -1,4 +1,4 @@
-package com.ivan.eloy.eloysimulator.mood;
+package com.ivan.moodidk.mood;
 
 public interface MoodModifier {
 

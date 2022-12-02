@@ -1,6 +1,6 @@
-package com.ivan.eloy.eloysimulator.mood;
+package com.ivan.moodidk.mood;
 
-import com.ivan.eloy.eloysimulator.core.model.ActorImpl;
+import com.ivan.moodidk.core.model.ActorImpl;
 
 public class RunnableMoodManager implements Runnable {
 	

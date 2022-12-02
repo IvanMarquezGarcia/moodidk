@@ -1,4 +1,4 @@
-package com.ivan.eloy.eloysimulator.tasks;
+package com.ivan.moodidk.tasks;
 
 public enum Dificulty {
 
