@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.ivan.eloy.eloysimulator.core.model.Eloy;
+import com.ivan.eloy.eloysimulator.core.model.ActorImpl;
 import com.ivan.eloy.eloysimulator.core.utils.Date;
 import com.ivan.eloy.eloysimulator.tasks.Dificulty;
 import com.ivan.eloy.eloysimulator.tasks.Task;
@@ -21,7 +21,7 @@ public class Main {
 		
 		init();
 		
-		Eloy eloy = new Eloy();
+		ActorImpl eloy = new ActorImpl();
 		
 		byte optionCode = -1;
 		boolean goAhead = true;

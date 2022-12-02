@@ -11,11 +11,11 @@ import com.ivan.eloy.eloysimulator.tasks.management.TaskModifierImpl;
 
 // Clase para instanciar un nuevo Eloy:
 
-public class Eloy extends Human implements MariCarmen, ManuelJesus {
+public class ActorImpl extends Actor {
 
 	List<String> phrases;
 	
-	public Eloy() {
+	public ActorImpl() {
 		init();
 	}
 	

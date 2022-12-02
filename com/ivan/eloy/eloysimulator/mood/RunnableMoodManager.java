@@ -1,13 +1,13 @@
 package com.ivan.eloy.eloysimulator.mood;
 
-import com.ivan.eloy.eloysimulator.core.model.Eloy;
+import com.ivan.eloy.eloysimulator.core.model.ActorImpl;
 
 public class RunnableMoodManager implements Runnable {
 	
-	private Eloy eloy;
+	private ActorImpl eloy;
 	private MoodModifier moodModifier;
 	
-	public RunnableMoodManager(Eloy eloy, MoodModifierImpl mmImpl) {
+	public RunnableMoodManager(ActorImpl eloy, MoodModifierImpl mmImpl) {
 		this.eloy = eloy;
 		this.moodModifier = mmImpl;
 	}

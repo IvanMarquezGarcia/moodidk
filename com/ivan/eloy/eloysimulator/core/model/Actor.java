@@ -7,7 +7,7 @@ import java.util.Map;
 import com.ivan.eloy.eloysimulator.tasks.Task;
 import com.ivan.eloy.eloysimulator.tasks.management.TaskModifier;
 
-public abstract class Human {
+public abstract class Actor {
 
 	protected double experience; 		
 	protected double stress;

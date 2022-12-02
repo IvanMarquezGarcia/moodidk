@@ -1,14 +1,14 @@
 package com.ivan.eloy.eloysimulator.mood;
 
 
-import com.ivan.eloy.eloysimulator.core.model.Eloy;
+import com.ivan.eloy.eloysimulator.core.model.ActorImpl;
 import com.ivan.eloy.eloysimulator.core.utils.Constants;
 
 public class MoodModifierImpl implements MoodModifier {
 	
-	private Eloy eloy;
+	private ActorImpl eloy;
 	
-	public MoodModifierImpl(Eloy eloy) {
+	public MoodModifierImpl(ActorImpl eloy) {
 		this.eloy = eloy;
 	}
 
