@@ -11,12 +11,12 @@ public class TaskModifierImpl implements TaskModifier {
 	@Override
 	public void setDificulty(Dificulty dificulty, Task task) throws Exception {
 		if (dificulty == null) {
-			throw new NullPointerException("dificultad nula");
+			throw new NullPointerException("null difficulty");
 		}
 		
 		if (task.getDificulty() != null) {
-			throw new IllegalStateException("la tarea " + task.getName() + " ya tiene una " +
-											"asignada");
+			throw new IllegalStateException("the task " + task.getName() +
+					" has already a difficulty assigned");
 		}
 		
 		task.setDificulty(dificulty);
@@ -25,11 +25,13 @@ public class TaskModifierImpl implements TaskModifier {
 	@Override
 	public void setLimitDate(long limitDate, Task task) throws Exception {
 		if (limitDate <= task.getInitDate()) {
-			throw new IllegalArgumentException("la fecha limite debe ser posterior a la de inicio");
+			throw new IllegalArgumentException("the limit date should be "
+					+ "greater than start date");
 		}
 		
 		if (task.getLimitDate() != 0) {
-			throw new IllegalStateException("la tarea " + task.getName() + " ya tiene fecha limite");
+			throw new IllegalStateException("the task " + task.getName() +
+					" has already a limit date assigned");
 		}
 		
 		task.setLimitDate(limitDate);
@@ -38,12 +40,13 @@ public class TaskModifierImpl implements TaskModifier {
 	@Override
 	public void setWorkload(long workload, Task task) throws Exception {
 		if (workload < 1) {
-			throw new IllegalArgumentException("la carga de trabajo no puede ser inferior a 1");
+			throw new IllegalArgumentException("the workload cannot be "
+					+ "less than 1");
 		}
 		
 		if (task.getWorkload() != 0) {
-			throw new IllegalStateException("la tarea " + task.getName() + " ya tiene asignada " +
-											"una carga de trabajo");
+			throw new IllegalStateException("the task " + task.getName() +
+					" has already assigned a workload una carga de trabajo");
 		}
 		
 		task.setWorkload(workload);
@@ -57,11 +60,11 @@ public class TaskModifierImpl implements TaskModifier {
 	@Override
 	public Map<String, Double> submit(Task task) throws Exception {
 		if (task.getDone()) {
-			throw new IllegalStateException("tarea ya realizada");
+			throw new IllegalStateException("the task was already done");
 		}
 		
 		if (task.getCompletedWork() < task.getWorkload()) {
-			throw new IllegalStateException("tarea sin completar");
+			throw new IllegalStateException("incompleted task");
 		}
 		
 		Map<String, Double> compensationPack = new HashMap<>();
@@ -70,7 +73,5 @@ public class TaskModifierImpl implements TaskModifier {
 		
 		return compensationPack;
 	}
-
-	
 
 }
