@@ -100,6 +100,10 @@ public abstract class Actor {
 	public TaskModifier getTaskModifier() {
 		return taskModifier;
 	}
+
+	// ######################################################################
+	// # GETTERS OF CALCULATED FIELDS
+	// ######################################################################
 	
 	public double getWorkAgility() {
 		double auxExperience = experience;
