@@ -4,47 +4,47 @@ import com.ivan.moodidk.core.model.ActorImpl;
 
 public class RunnableMoodManager implements Runnable {
 	
-	private ActorImpl eloy;
+	private ActorImpl actor;
 	private MoodModifier moodModifier;
 	
-	public RunnableMoodManager(ActorImpl eloy, MoodModifierImpl mmImpl) {
-		this.eloy = eloy;
+	public RunnableMoodManager(ActorImpl actor, MoodModifierImpl mmImpl) {
+		this.actor = actor;
 		this.moodModifier = mmImpl;
 	}
 	
 	@Override
 	public void run() {
 		while(true) {
-			if (eloy.getMotivation() < 0 && eloy.getSatisfaction() < 0) {
+			if (actor.getMotivation() < 0 && actor.getSatisfaction() < 0) {
 				moodModifier.modifyFrustration(0.4);
 			}
-			else if (eloy.getMotivation() < 5 && eloy.getSatisfaction() < 5) {
+			else if (actor.getMotivation() < 5 && actor.getSatisfaction() < 5) {
 				moodModifier.modifyFrustration(0.2);
 			}
-			else if (eloy.getMotivation() >= 5 || eloy.getSatisfaction() >= 5) {
+			else if (actor.getMotivation() >= 5 || actor.getSatisfaction() >= 5) {
 				moodModifier.modifyFrustration(-0.4);
 			}
 			
-			if (eloy.getMotivation() > 7 || eloy.getSatisfaction() > 7) {
+			if (actor.getMotivation() > 7 || actor.getSatisfaction() > 7) {
 				moodModifier.clearFrustration();
 			}
 			
-			if (eloy.getFrustration() > 7) {
+			if (actor.getFrustration() > 7) {
 				moodModifier.modifyEvilMode(true);
 				moodModifier.modifyMotivation(-0.2);
 				moodModifier.modifySatisfaction(-0.35);
 			}
-			else if (eloy.getFrustration() >= 4 && eloy.getFrustration() <= 7) {
+			else if (actor.getFrustration() >= 4 && actor.getFrustration() <= 7) {
 				moodModifier.modifyEvilMode(true);
 				moodModifier.modifyMotivation(-0.1);
 				moodModifier.modifySatisfaction(-0.2);
 			}
-			else if (eloy.getFrustration() < 4 && eloy.getFrustration() > 0) {
+			else if (actor.getFrustration() < 4 && actor.getFrustration() > 0) {
 				moodModifier.modifyEvilMode(false);
 				moodModifier.modifyMotivation(-0.01);
 				moodModifier.modifySatisfaction(-0.02);
 			}
-			else if (eloy.getFrustration() <= 0)
+			else if (actor.getFrustration() <= 0)
 				moodModifier.modifyEvilMode(false);
 			
 			adjustLimits();
@@ -60,24 +60,24 @@ public class RunnableMoodManager implements Runnable {
 	}
 	
 	private void adjustLimits() {
-		if (eloy.getMotivation() > 10)
+		if (actor.getMotivation() > 10)
 			moodModifier.fillMotivation();
-		else if (eloy.getMotivation() < 0)
+		else if (actor.getMotivation() < 0)
 			moodModifier.clearMotivation();
 		
-		if (eloy.getSatisfaction() > 10)
+		if (actor.getSatisfaction() > 10)
 			moodModifier.fillSatisfaction();
-		else if (eloy.getSatisfaction() < 0)
+		else if (actor.getSatisfaction() < 0)
 			moodModifier.clearSatisfaction();
 		
-		if (eloy.getFrustration() > 10)
+		if (actor.getFrustration() > 10)
 			moodModifier.fillFrustration();
-		else if (eloy.getFrustration() < 0)
+		else if (actor.getFrustration() < 0)
 			moodModifier.clearFrustration();
 		
-		if (eloy.getStress() > 10)
+		if (actor.getStress() > 10)
 			moodModifier.fillStress();
-		else if (eloy.getStress() < 0)
+		else if (actor.getStress() < 0)
 			moodModifier.clearStress();
 	}
 }
