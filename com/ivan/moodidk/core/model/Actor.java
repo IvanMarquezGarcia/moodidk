@@ -2,6 +2,7 @@ package com.ivan.moodidk.core.model;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Map;
 
 import com.ivan.moodidk.tasks.Task;
@@ -18,8 +19,8 @@ public abstract class Actor {
 	protected boolean evilMode;   	// is activated when frustration exceeds value 8
 	protected boolean alive;
 	protected boolean working;
-	
 	protected TaskModifier taskModifier;
+	protected List<String> phrases;
 	
 	// ######################################################################
 	// # GETTERS AND SETTERS
@@ -164,6 +165,16 @@ public abstract class Actor {
 			thread.start();
 		} else {
 			System.out.println("No puedo, estoy trabajando en " + task.getName());
+		}
+	}
+	
+	public void addPhrase(String phrase) {
+		phrases.add(phrase);
+	}
+	
+	public void addPhrases(List<String> phrases) {
+		for (String phrase: phrases) {
+			addPhrase(phrase);
 		}
 	}
 	
